@@ -28,7 +28,7 @@ class PasteryUploader():
             url += "&max_views=%s" % max_views
 
         body = bytes(body.encode("utf8"))
-        req = Request(url, data=body, headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'})
+        req = Request(url, data=body, headers={'User-Agent': 'Mozilla/5.0 (Python) bakeit library'})
         try:
             response = urlopen(req)
         except HTTPError as e:
