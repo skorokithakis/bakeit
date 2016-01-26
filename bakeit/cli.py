@@ -64,4 +64,3 @@ def main():
     print("Paste URL: %s" % url)
     if args.open_browser:
         open_new_tab(url)
-main()
