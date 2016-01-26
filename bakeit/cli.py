@@ -50,7 +50,6 @@ def main():
     else:
         print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
-    print(args)
 
     pu = PasteryUploader(pastery["api_key"])
     url = pu.upload(
