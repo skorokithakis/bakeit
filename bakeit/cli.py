@@ -45,6 +45,7 @@ def main():
     if args.filename:
         content = open(args.filename, "r").read()
     else:
+        print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
 
     pu = PasteryUploader(pastery["api_key"])
