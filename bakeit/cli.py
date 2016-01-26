@@ -7,7 +7,7 @@ try:
 except ImportError:
     import configparser as ConfigParser
 
-from bakeit.uploader import PasteryUploader
+from uploader import PasteryUploader
 
 
 def main():
@@ -48,8 +48,16 @@ def main():
     if args.filename:
         content = open(args.filename, "r").read()
     else:
-        print("Type your paste and press Ctrl+D to upload.")
+        if sys.stdin.isatty():
+            print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
+
+    try:
+        # Python 2 hack to decode bytes into UTF8. Didn't know of a
+        # better way that required no dependencies, so this is what you get.
+        content = content.decode("utf8")
+    except:
+        pass
 
     duration = args.duration if args.duration else pastery.get("duration")
 
@@ -64,3 +72,7 @@ def main():
     print("Paste URL: %s" % url)
     if args.open_browser:
         open_new_tab(url)
+
+
+if __name__ == "__main__":
+    main()

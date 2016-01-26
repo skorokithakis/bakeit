@@ -16,7 +16,7 @@ class PasteryUploader():
         """
         Upload the given body with the specified language type.
         """
-        url = u"https://www.pastery.net/api/paste/?api_key=%s" % self.api_key
+        url = "https://www.pastery.net/api/paste/?api_key=%s" % self.api_key
         if title:
             url += "&title=%s" % title
         if language:
@@ -26,7 +26,8 @@ class PasteryUploader():
         if max_views:
             url += "&max_views=%s" % max_views
 
-        req = Request(url, data=bytes(body.encode("utf8")), headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'})
+        body = bytes(body.encode("utf8"))
+        req = Request(url, data=body, headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'})
         try:
             response = urlopen(req)
         except HTTPError as e:
