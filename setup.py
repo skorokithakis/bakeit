@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-install_requires = ["requests>=2.8.0"]
+install_requires = []
 tests_require = ["pep8"] + install_requires
 
 setup(
