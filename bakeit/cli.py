@@ -7,7 +7,7 @@ try:
 except ImportError:
     import configparser as ConfigParser
 
-from uploader import PasteryUploader
+from bakeit.uploader import PasteryUploader
 
 
 def main():
