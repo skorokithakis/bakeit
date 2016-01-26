@@ -7,6 +7,7 @@ try:
 except ImportError:
     import configparser as ConfigParser
 
+from bakeit import __version__
 from bakeit.uploader import PasteryUploader
 
 
@@ -43,8 +44,13 @@ def main():
                         help="how many times this paste can be viewed before it expires")
     parser.add_argument("-b", "--open-browser", action="store_true",
                         help="automatically open a browser window when done")
+    parser.add_argument("-V", "--version", action="store_true",
+                        help="show the version and quit")
 
     args = parser.parse_args()
+    if args.version:
+        sys.exit("BakeIt version %s." % __version__)
+
     if args.filename:
         content = open(args.filename, "r").read()
     else:
