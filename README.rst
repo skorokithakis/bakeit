@@ -31,15 +31,15 @@ Then, just pass the file you want to upload to the ``bakeit`` command:
 
 ::
 
-    $ bakeit <file to upload>
+    $ bakeit myfile.txt
     Paste URL: https://www.pastery.net/oniasd/
 
 You can also pipe stuff to it:
 
 ::
 
-    $ cat myfile | grep hello | bakeit
-    Paste URL: https://www.pastery.net/oniasd/
+    $ cat myfile.txt | grep hello | bakeit
+    Paste URL: https://www.pastery.net/oxczvs/
 
 
 The config file
@@ -71,7 +71,7 @@ BakeIt provides the ``PasteryUploader`` class:
     >>> from bakeit import PasteryUploader
     >>> pu = PasteryUploader("your API key")
     >>> pu.upload("this is the text to upload")
-    "https://www.pastery.net/oniasd/"
+    "https://www.pastery.net/pabtus/"
 
 ``PasteryUploader`` accepts the following arguments:
 
