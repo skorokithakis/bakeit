@@ -51,14 +51,17 @@ def main():
         print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
 
+    duration = args.duration if args.duration else pastery.get("duration")
+
     pu = PasteryUploader(pastery["api_key"])
     url = pu.upload(
             content,
             title=args.title,
             language=args.language,
-            duration=args.duration,
+            duration=duration,
             max_views=args.max_views,
             )
     print("Paste URL: %s" % url)
     if args.open_browser:
         open_new_tab(url)
+main()
