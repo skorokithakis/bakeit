@@ -1,5 +1,6 @@
 try:
-    from urllib.request import urlopen, Request, HTTPError
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
 except ImportError:
     from urllib2 import urlopen, Request, HTTPError
 import json
@@ -31,7 +32,7 @@ class PasteryUploader():
         try:
             response = urlopen(req)
         except HTTPError as e:
-            response = json.loads(e.read())
+            response = json.loads(e.read().decode("utf8"))
             raise RuntimeError(response["error_msg"])
         response = json.loads(response.read().decode("utf8"))
         return response["url"]
