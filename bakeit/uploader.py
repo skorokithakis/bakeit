@@ -26,7 +26,7 @@ class PasteryUploader():
         if max_views:
             url += "&max_views=%s" % max_views
 
-        req = Request(url, data=bytes(body, "utf8"), headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'})
+        req = Request(url, data=bytes(body.encode("utf8")), headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'})
         try:
             response = urlopen(req)
         except HTTPError as e:
