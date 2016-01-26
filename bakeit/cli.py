@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+from webbrowser import open_new_tab
 try:
     import ConfigParser
 except ImportError:
@@ -40,6 +41,8 @@ def main():
                        help="the duration (in minutes) before the paste expires")
     parser.add_argument("-v", "--max-views", metavar="views", type=int,
                        help="how many times this paste can be viewed before it expires")
+    parser.add_argument("-b", "--open-browser", action="store_true",
+                       help="automatically open a browser window when done")
 
     args = parser.parse_args()
     if args.filename:
@@ -47,6 +50,7 @@ def main():
     else:
         print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
+    print(args)
 
     pu = PasteryUploader(pastery["api_key"])
     url = pu.upload(
@@ -57,3 +61,5 @@ def main():
             max_views=args.max_views,
             )
     print("Paste URL: %s" % url)
+    if args.open_browser:
+        open_new_tab(url)
