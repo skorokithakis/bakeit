@@ -71,7 +71,7 @@ BakeIt provides the ``PasteryUploader`` class:
     >>> from bakeit import PasteryUploader
     >>> pu = PasteryUploader("your API key")
     >>> pu.upload("this is the text to upload")
-    "https://www.pastery.net/oniasd/"]
+    "https://www.pastery.net/oniasd/"
 
 ``PasteryUploader`` accepts the following arguments:
 
