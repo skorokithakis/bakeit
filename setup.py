@@ -29,8 +29,7 @@ setup(
     license="MIT",
     classifiers=classifiers,
     packages=["bakeit"],
-    test_suite='bakeit.tests',
-    tests_require=['pep8'],
+    install_requires=["requests>=2.8.0"],
     entry_points={
         'console_scripts': ['bakeit=bakeit.cli:main'],
     },
