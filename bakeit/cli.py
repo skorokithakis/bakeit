@@ -57,4 +57,3 @@ def main():
             max_views=args.max_views,
             )
     print("Paste URL: %s" % url)
-main()
