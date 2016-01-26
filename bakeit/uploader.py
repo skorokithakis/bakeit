@@ -27,6 +27,7 @@ class PasteryUploader():
             url += "&duration=%s" % duration
         if max_views:
             url += "&max_views=%s" % max_views
+
         req = Request(url, data=bytes(body), headers={'User-Agent': 'Mozilla/5.0 (Python) bakeit library'})
         try:
             response = urlopen(req)

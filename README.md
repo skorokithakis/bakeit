@@ -26,7 +26,7 @@ in `~/.config/bakeit.cfg`, like so:
 
 ~~~
 [pastery]
-api-key = eisha8ahqui7Aesh0fasyu8HFsdo
+api_key = eisha8ahqui7Aesh0fasyu8HFsdo
 ~~~
 
 Then, just pass the file you want to upload to the `bakeit` command:
