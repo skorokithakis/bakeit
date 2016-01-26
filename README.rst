@@ -46,9 +46,12 @@ Usage as a Python library
 
 BakeIt provides the ``PasteryUploader`` class:
 
-:sub:`[STRIKEOUT:.python >>> from bakeit import PasteryUploader >>> pu =
-PasteryUploader("your API key") >>> pu.upload("this is the text to
-upload") "https://www.pastery.net/oniasd/"]`
+::
+
+    >>> from bakeit import PasteryUploader
+    >>> pu = PasteryUploader("your API key")
+    >>> pu.upload("this is the text to upload")
+    "https://www.pastery.net/oniasd/"]
 
 ``PasteryUploader`` accepts the following arguments:
 
