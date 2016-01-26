@@ -53,12 +53,12 @@ A full config file can look like this:
     api_key = eisha8ahqui7Aesh0fasyu8HFsdo
     duration = 2880
 
-The `api_key` parameter, as explained above, is mandatory. You can find it at
+The ``api_key`` parameter, as explained above, is mandatory. You can find it at
 the bottom of `your Pastery account page <https://www.pastery.net/account/>`__.
 
-The `duration` parameter is optional. If set, it will be used as the default
+The ``duration`` parameter is optional. If set, it will be used as the default
 duration for every new paste. The command-line argument takes precedence over
-this parameter, though, so you can change it per-paste when invoking `bakeit`.
+this parameter, though, so you can change it per-paste when invoking ``bakeit``.
 
 
 Usage as a Python library
