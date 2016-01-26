@@ -29,10 +29,10 @@ class PasteryUploader():
             headers={'User-Agent': u'Mozilla/5.0 (Python) bakeit library'},
         )
         if 500 <= response.status_code < 600:
-            raise Exception("There was a server error, please try again later.")
+            raise RuntimeError("There was a server error, please try again later.")
         else:
             rd = response.json()
             if rd.get("result") == "error":
-                raise Exception(rd["error_msg"])
+                raise RuntimeError(rd["error_msg"])
 
         return rd["url"]

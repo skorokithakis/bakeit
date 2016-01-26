@@ -30,19 +30,19 @@ def main():
         )
 
     parser = argparse.ArgumentParser(description="Upload a file to Pastery, the "
-            " best pastebin in the world.")
+                                     " best pastebin in the world.")
     parser.add_argument("filename", metavar="filename", type=str, default="", nargs="?",
-                       help="the name of the file to upload (or stdin, if omitted)")
+                        help="the name of the file to upload (or stdin, if omitted)")
     parser.add_argument("-t", "--title", metavar="title", type=str,
-                       help="the title of the paste")
+                        help="the title of the paste")
     parser.add_argument("-l", "--language", metavar="lang", type=str,
-                       help="the language highlighter to use")
+                        help="the language highlighter to use")
     parser.add_argument("-d", "--duration", metavar="minutes", type=int,
-                       help="the duration (in minutes) before the paste expires")
+                        help="the duration (in minutes) before the paste expires")
     parser.add_argument("-v", "--max-views", metavar="views", type=int,
-                       help="how many times this paste can be viewed before it expires")
+                        help="how many times this paste can be viewed before it expires")
     parser.add_argument("-b", "--open-browser", action="store_true",
-                       help="automatically open a browser window when done")
+                        help="automatically open a browser window when done")
 
     args = parser.parse_args()
     if args.filename:
@@ -63,12 +63,12 @@ def main():
 
     pu = PasteryUploader(pastery["api_key"])
     url = pu.upload(
-            content,
-            title=args.title,
-            language=args.language,
-            duration=duration,
-            max_views=args.max_views,
-            )
+        content,
+        title=args.title,
+        language=args.language,
+        duration=duration,
+        max_views=args.max_views,
+    )
     print("Paste URL: %s" % url)
     if args.open_browser:
         open_new_tab(url)

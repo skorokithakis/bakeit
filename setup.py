@@ -17,6 +17,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+install_requires = ["requests>=2.8.0"]
+tests_require = ["pep8"] + install_requires
+
 setup(
     name="bakeit",
     version=__version__,
@@ -29,7 +32,9 @@ setup(
     license="MIT",
     classifiers=classifiers,
     packages=["bakeit"],
-    install_requires=["requests>=2.8.0"],
+    tests_require=tests_require,
+    install_requires=install_requires,
+    test_suite='bakeit.tests',
     entry_points={
         'console_scripts': ['bakeit=bakeit.cli:main'],
     },
