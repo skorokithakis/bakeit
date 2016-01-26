@@ -49,7 +49,7 @@ def main():
 
     args = parser.parse_args()
     if args.version:
-        sys.exit("BakeIt version %s." % __version__)
+        sys.exit("BakeIt, version %s." % __version__)
 
     if args.filename:
         content = open(args.filename, "r").read()
