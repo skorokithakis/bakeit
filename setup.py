@@ -25,8 +25,7 @@ setup(
     url="https://github.com/skorokithakis/bakeit/",
     description="A command-line interface for Pastery, the best"
                 " pastebin in the world.",
-    long_description="Bakeit is a command-line utility that uploads "
-                     "text to Pastery.",
+    long_description=open("README.rst").read(),
     license="MIT",
     classifiers=classifiers,
     packages=["bakeit"],
