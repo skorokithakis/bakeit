@@ -1,9 +1,4 @@
-try:
-    from urllib.request import urlopen, Request
-    from urllib.error import HTTPError
-except ImportError:
-    from urllib2 import urlopen, Request, HTTPError
-import json
+import requests
 
 
 class PasteryUploader():
@@ -17,22 +12,27 @@ class PasteryUploader():
         """
         Upload the given body with the specified language type.
         """
-        url = "https://www.pastery.net/api/paste/?api_key=%s" % self.api_key
+        params = {"api_key": self.api_key}
         if title:
-            url += "&title=%s" % title
+            params["title"] = title
         if language:
-            url += "&language=%s" % language
+            params["language"] = language
         if duration:
-            url += "&duration=%s" % duration
+            params["duration"] = duration
         if max_views:
-            url += "&max_views=%s" % max_views
+            params["max_views"] = max_views
 
-        body = bytes(body.encode("utf8"))
-        req = Request(url, data=body, headers={'User-Agent': 'Mozilla/5.0 (Python) bakeit library'})
-        try:
-            response = urlopen(req)
-        except HTTPError as e:
-            response = json.loads(e.read().decode("utf8"))
-            raise RuntimeError(response["error_msg"])
-        response = json.loads(response.read().decode("utf8"))
-        return response["url"]
+        response = requests.post(
+            "https://www.pastery.net/api/paste/",
+            files={"file": body},
+            params=params,
+            headers={'User-Agent': 'Mozilla/5.0 (Python) bakeit library'},
+        )
+        if 500 <= response.status_code < 600:
+            raise RuntimeError("There was a server error, please try again later.")
+        else:
+            rd = response.json()
+            if rd.get("result") == "error":
+                raise RuntimeError(rd["error_msg"])
+
+        return rd["url"]

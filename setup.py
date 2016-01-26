@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-install_requires = []
+install_requires = ["requests", "requests[security]"]
 tests_require = ["pep8"] + install_requires
 
 setup(
