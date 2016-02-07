@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-from bakeit import __version__
+exec(open('bakeit/version.py').read())
 assert sys.version >= '2.6', "Requires Python v2.6 or above."
 from setuptools import setup
 
@@ -18,11 +18,12 @@ classifiers = [
 ]
 
 install_requires = ["requests", "requests[security]"]
-tests_require = ["pep8"] + install_requires
+tests_require = ["pep8", "pytest"] + install_requires
+
 
 setup(
     name="bakeit",
-    version=__version__,
+    version=__version__,  # noqa
     author="Stavros Korokithakis",
     author_email="hi@stavros.io",
     url="https://github.com/skorokithakis/bakeit/",
@@ -32,8 +33,8 @@ setup(
     license="MIT",
     classifiers=classifiers,
     packages=["bakeit"],
-    tests_require=tests_require,
     install_requires=install_requires,
+    tests_require=tests_require,
     test_suite='bakeit.tests',
     entry_points={
         'console_scripts': ['bakeit=bakeit.cli:main'],

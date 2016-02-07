@@ -1,3 +1,4 @@
-from bakeit.uploader import PasteryUploader  # noqa
+# flake8: noqa
 
-__version__ = '0.1.8'
+from bakeit.version import __version__
+from bakeit.uploader import PasteryUploader
