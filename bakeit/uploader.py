@@ -30,6 +30,8 @@ class PasteryUploader():
         )
         if 500 <= response.status_code < 600:
             raise RuntimeError("There was a server error, please try again later.")
+        elif response.status_code == 413:
+            raise RuntimeError("The chosen file was rejected by the server because it was too large, please try a smaller file.")
         else:
             rd = response.json()
             if rd.get("result") == "error":
