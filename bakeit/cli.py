@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import pyperclip
 from webbrowser import open_new_tab
 try:
     import ConfigParser
@@ -80,6 +81,7 @@ def main():
         print("ERROR: %s" % e)
     else:
         print("Paste URL: %s" % url)
+        pyperclip.copy(url)
         if args.open_browser:
             open_new_tab(url)
 

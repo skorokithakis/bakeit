@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-install_requires = ["requests", "requests[security]"]
+install_requires = ["requests", "requests[security]", "pyperclip"]
 tests_require = ["pep8", "pytest"] + install_requires
 
 
