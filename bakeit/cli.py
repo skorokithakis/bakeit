@@ -81,7 +81,10 @@ def main():
         print("ERROR: %s" % e)
     else:
         print("Paste URL: %s" % url)
-        pyperclip.copy(url)
+        try:
+            pyperclip.copy(url)
+        except pyperclip.exceptions.PyperclipException as e:
+            print("WARN: %s" % e)
         if args.open_browser:
             open_new_tab(url)
 
