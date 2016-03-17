@@ -85,7 +85,8 @@ def main():
             pyperclip.copy(url)
         except pyperclip.exceptions.PyperclipException:
             print("Pyperclip isn't working properly on your system, bakeit"
-                  " cannot copy the URL to the clipboard automatically.")
+                  " cannot copy the URL to the clipboard automatically. If"
+                  " you are on Linux, try installing xclip.")
         if args.open_browser:
             open_new_tab(url)
 
