@@ -81,7 +81,11 @@ def main():
         print("ERROR: %s" % e)
     else:
         print("Paste URL: %s" % url)
-        pyperclip.copy(url)
+        try:
+            pyperclip.copy(url)
+        except pyperclip.exceptions.PyperclipException:
+            print("Pyperclip isn't working properly on your system, bakeit"
+                  " cannot copy the URL to the clipboard automatically.")
         if args.open_browser:
             open_new_tab(url)
 
