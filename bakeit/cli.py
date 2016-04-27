@@ -49,11 +49,16 @@ def main():
                         help="show the version and quit")
 
     args = parser.parse_args()
+
     if args.version:
         sys.exit("BakeIt, version %s." % __version__)
 
+    title = args.title
+
     if args.filename:
         content = open(args.filename, "r").read()
+        if not title:
+            title = os.path.basename(args.filename)
     else:
         if sys.stdin.isatty():
             print("Type your paste and press Ctrl+D to upload.")
@@ -72,7 +77,7 @@ def main():
     try:
         url = pu.upload(
             content,
-            title=args.title,
+            title=title,
             language=args.language,
             duration=duration,
             max_views=args.max_views,
