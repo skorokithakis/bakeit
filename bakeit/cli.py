@@ -118,7 +118,7 @@ def main():
         print("Paste URL: %s" % url)
         try:
             pyperclip.copy(url)
-        except pyperclip.exceptions.PyperclipException:
+        except Exception:
             print(
                 "Pyperclip isn't working properly on your system, bakeit"
                 " cannot copy the URL to the clipboard automatically. If"
