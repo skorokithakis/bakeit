@@ -1,5 +1,3 @@
-"""Define __main__."""
-# pylint: disable=too-many-branches,  bare-except, too-many-statements, invalid-name
 import argparse
 import os
 import sys
@@ -7,7 +5,7 @@ from webbrowser import open_new_tab
 
 import pyperclip
 
-try:  # py2-compatible
+try:
     from Tkinter import Tk  # type: ignore
 except ModuleNotFoundError:
     from tkinter import Tk
@@ -22,7 +20,6 @@ from bakeit.uploader import PasteryUploader
 
 
 def main():
-    """Define main."""
     config = ConfigParser.SafeConfigParser()
     config.read([os.path.expanduser("~/.config/bakeit.cfg")])
     try:
@@ -125,16 +122,14 @@ def main():
     else:
         print("Paste URL: %s" % url)
         try:
-            # probe DISPLAY and X-server readiness
-            # might as well use sys.platform() in ['linux']
-            #   and `xdpyinfo` or `xset -q`
-            # but tkinter.Tk() seems to be the easiest
+            # Probe DISPLAY and X-server readiness.
+            # We might as well use sys.platform() in ['linux']
+            # and `xdpyinfo` or `xset -q`, but `tkinter.Tk()`
+            # seems to be the easiest.
             _ = Tk()
             _.destroy()
             clipb_copy_ready = True
-        except:  # noqa
-            # bypass pyperclip.copy to avoid displaying
-            #   "xsel: Can't open display: (null)"
+        except Exception:
             clipb_copy_ready = False
 
         if clipb_copy_ready:
