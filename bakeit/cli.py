@@ -1,3 +1,5 @@
+"""Define __main__."""
+# pylint: disable=too-many-branches,  bare-except, too-many-statements, invalid-name
 import argparse
 import os
 import sys
@@ -6,7 +8,7 @@ from webbrowser import open_new_tab
 import pyperclip
 
 try:  # py2-compatible
-    from Tkinter import Tk
+    from Tkinter import Tk  # type: ignore
 except ModuleNotFoundError:
     from tkinter import Tk
 
@@ -20,6 +22,7 @@ from bakeit.uploader import PasteryUploader
 
 
 def main():
+    """Define main."""
     config = ConfigParser.SafeConfigParser()
     config.read([os.path.expanduser("~/.config/bakeit.cfg")])
     try:
@@ -123,11 +126,18 @@ def main():
         print("Paste URL: %s" % url)
         try:
             # probe DISPLAY and X-server readiness
-            # might as well use `xdpyinfo` or `xset -q`
+            # might as well use sys.platform() in ['linux']
+            #   and `xdpyinfo` or `xset -q`
             # but tkinter.Tk() seems to be the easiest
-            win = Tk()
-            win.destroy()
+            _ = Tk()
+            _.destroy()
+            clipb_copy_ready = True
+        except:  # noqa
+            # bypass pyperclip.copy to avoid displaying
+            #   "xsel: Can't open display: (null)"
+            clipb_copy_ready = True
 
+        if clipb_copy_ready:
             try:
                 pyperclip.copy(url)
             except Exception:
@@ -136,9 +146,6 @@ def main():
                     " cannot copy the URL to the clipboard automatically. If"
                     " you are on Linux, try installing xclip."
                 )
-        except:
-            # bypass pyperclip.copy to avoid displaying "xsel: Can't open display: (null)"
-            ...
 
         if args.open_browser:
             open_new_tab(url)
