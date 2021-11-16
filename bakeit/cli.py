@@ -5,6 +5,11 @@ from webbrowser import open_new_tab
 
 import pyperclip
 
+try:  # py2-compatible
+    from Tkinter import Tk
+except ModuleNotFoundError:
+    from tkinter import Tk
+
 try:
     import ConfigParser
 except ImportError:
@@ -117,13 +122,24 @@ def main():
     else:
         print("Paste URL: %s" % url)
         try:
-            pyperclip.copy(url)
-        except Exception:
-            print(
-                "Pyperclip isn't working properly on your system, bakeit"
-                " cannot copy the URL to the clipboard automatically. If"
-                " you are on Linux, try installing xclip."
-            )
+            # probe DISPLAY and X-server readiness
+            # might as well use `xdpyinfo` or `xset -q`
+            # but tkinter.Tk() seems to be the easiest
+            win = Tk()
+            win.destroy()
+
+            try:
+                pyperclip.copy(url)
+            except Exception:
+                print(
+                    "Pyperclip isn't working properly on your system, bakeit"
+                    " cannot copy the URL to the clipboard automatically. If"
+                    " you are on Linux, try installing xclip."
+                )
+        except:
+            # bypass pyperclip.copy to avoid displaying "xsel: Can't open display: (null)"
+            ...
+
         if args.open_browser:
             open_new_tab(url)
 
