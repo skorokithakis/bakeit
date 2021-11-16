@@ -135,7 +135,7 @@ def main():
         except:  # noqa
             # bypass pyperclip.copy to avoid displaying
             #   "xsel: Can't open display: (null)"
-            clipb_copy_ready = True
+            clipb_copy_ready = False
 
         if clipb_copy_ready:
             try:
