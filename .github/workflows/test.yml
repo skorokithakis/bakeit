@@ -20,13 +20,12 @@ jobs:
       uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
-        cache-dependency-glob: "uv.lock"
 
     - name: Set up Python ${{ matrix.python-version }}
       run: uv python install ${{ matrix.python-version }}
 
     - name: Install dependencies
-      run: uv sync --frozen
+      run: uv sync
 
     - name: Run tests
       run: uv run pytest
