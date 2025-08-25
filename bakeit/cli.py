@@ -82,6 +82,11 @@ def main():
     title = args.title
 
     if args.filename:
+        if not os.path.exists(args.filename):
+            sys.exit(
+                f"Error: The file '{args.filename}' could not be found.\n"
+                f"Please check that the file path is correct and the file exists."
+            )
         content = open(args.filename, "r").read()
         if not title:
             title = os.path.basename(args.filename)
