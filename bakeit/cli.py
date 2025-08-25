@@ -19,7 +19,7 @@ def main():
         sys.exit(
             "Config file not found. Make sure you have a config file"
             " at ~/.config/bakeit.cfg with a [pastery] section containing"
-            " your Pastery API key, which you can get from your"
+            " your Pastery API key (`api_key=<key>`), which you can get from your"
             " https://www.pastery.net account page."
         )
 
