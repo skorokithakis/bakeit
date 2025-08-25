@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bakeit"
+version = "0.2.3"
+description = "A command-line interface for Pastery, the best pastebin in the world."
+readme = "README.rst"
+license = {text = "MIT"}
+authors = [
+    {name = "Stavros Korokithakis", email = "hi@stavros.io"},
+]
+requires-python = ">=3.8"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "pyperclip>=1.8.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/skorokithakis/bakeit/"
+Repository = "https://github.com/skorokithakis/bakeit/"
+
+[project.scripts]
+bakeit = "bakeit.cli:main"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+]
+
+[tool.hatch.version]
+path = "bakeit/version.py"
+pattern = '__version__ = "(?P<version>.*)"'
+
+[tool.hatch.build.targets.wheel]
+packages = ["bakeit"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["bakeit"]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]

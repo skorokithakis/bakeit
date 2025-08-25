@@ -8,11 +8,20 @@ BakeIt aims to be simple to use and unobtrusive.
 Installation
 ============
 
-To install, use ``pip``:
+To install from PyPI, use ``pip``:
 
 ::
 
     pip install bakeit
+
+For development, clone the repository and use ``uv``:
+
+::
+
+    git clone https://github.com/skorokithakis/bakeit.git
+    cd bakeit
+    uv sync
+    uv run bakeit
 
 You are done!
 

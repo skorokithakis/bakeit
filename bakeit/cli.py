@@ -1,30 +1,21 @@
 import argparse
+import configparser
 import os
 import sys
 from webbrowser import open_new_tab
 
 import pyperclip
 
-try:
-    from Tkinter import Tk  # type: ignore
-except ModuleNotFoundError:
-    from tkinter import Tk
-
-try:
-    import ConfigParser
-except ImportError:
-    import configparser as ConfigParser
-
 from bakeit import __version__
 from bakeit.uploader import PasteryUploader
 
 
 def main():
-    config = ConfigParser.SafeConfigParser()
+    config = configparser.ConfigParser()
     config.read([os.path.expanduser("~/.config/bakeit.cfg")])
     try:
         pastery = dict(config.items("pastery"))
-    except:
+    except configparser.NoSectionError:
         sys.exit(
             "Config file not found. Make sure you have a config file"
             " at ~/.config/bakeit.cfg with a [pastery] section containing"
@@ -39,7 +30,7 @@ def main():
         )
 
     parser = argparse.ArgumentParser(
-        description="Upload a file to Pastery, the " " best pastebin in the world."
+        description="Upload a file to Pastery, the  best pastebin in the world."
     )
     parser.add_argument(
         "filename",
@@ -99,12 +90,7 @@ def main():
             print("Type your paste and press Ctrl+D to upload.")
         content = sys.stdin.read()
 
-    try:
-        # Python 2 hack to decode bytes into UTF8. Didn't know of a
-        # better way that required no dependencies, so this is what you get.
-        content = content.decode("utf8")
-    except:
-        pass
+    # Content is already a string in Python 3.
 
     duration = args.duration if args.duration else pastery.get("duration")
 
