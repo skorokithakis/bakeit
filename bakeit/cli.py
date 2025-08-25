@@ -108,25 +108,13 @@ def main():
     else:
         print("Paste URL: %s" % url)
         try:
-            # Probe DISPLAY and X-server readiness.
-            # We might as well use sys.platform() in ['linux']
-            # and `xdpyinfo` or `xset -q`, but `tkinter.Tk()`
-            # seems to be the easiest.
-            _ = Tk()
-            _.destroy()
-            clipb_copy_ready = True
+            pyperclip.copy(url)
         except Exception:
-            clipb_copy_ready = False
-
-        if clipb_copy_ready:
-            try:
-                pyperclip.copy(url)
-            except Exception:
-                print(
-                    "Pyperclip isn't working properly on your system, bakeit"
-                    " cannot copy the URL to the clipboard automatically. If"
-                    " you are on Linux, try installing xclip."
-                )
+            print(
+                "Pyperclip isn't working properly on your system, bakeit"
+                " cannot copy the URL to the clipboard automatically. If"
+                " you are on Linux, try installing xclip."
+            )
 
         if args.open_browser:
             open_new_tab(url)
