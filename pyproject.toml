@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bakeit"
-version = "0.2.4"
+version = "0.2.5"
 description = "A command-line interface for Pastery, the best pastebin in the world."
 readme = "README.rst"
 license = {text = "MIT"}

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/skorokithakis/bakeit/compare/v0.2.4...v0.2.5) (2025-08-25)
+
+
+### Bug Fixes
+
+* Clarify missing API key error message ([e654a77](https://github.com/skorokithakis/bakeit/commit/e654a776840af7d2b3a44b245073db52f34348ee))
+
 ## [0.2.4](https://github.com/skorokithakis/bakeit/compare/v0.2.3...v0.2.4) (2025-08-25)
 
 
